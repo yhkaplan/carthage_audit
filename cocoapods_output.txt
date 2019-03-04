@@ -1,0 +1,41 @@
+Updating spec repo `master`
+  $ /usr/local/bin/git -C /Users/josh/.cocoapods/repos/master fetch origin --progress
+  remote: Enumerating objects: 3333, done.
+  remote: Counting objects: 100% (3333/3333), done.
+  remote: Compressing objects: 100% (36/36), done.
+  remote: Total 7852 (delta 3297), reused 3316 (delta 3292), pack-reused 4519
+  Receiving objects: 100% (7852/7852), 849.40 KiB | 2.02 MiB/s, done.
+  Resolving deltas: 100% (5365/5365), completed with 1350 local objects.
+  From https://github.com/CocoaPods/Specs
+     28584d3b8f2..960fb6e66d4  master     -> origin/master
+  $ /usr/local/bin/git -C /Users/josh/.cocoapods/repos/master rev-parse --abbrev-ref HEAD
+  master
+  $ /usr/local/bin/git -C /Users/josh/.cocoapods/repos/master reset --hard origin/master
+  HEAD is now at 960fb6e66d4 [Add] YouboraFreewheelAdapterLib 6.0.7
+
+CocoaPods 1.7.0.beta.1 is available.
+To update use: `gem install cocoapods --pre`
+[!] This is a test version we'd love you to try.
+
+For more information, see https://blog.cocoapods.org and the CHANGELOG for this version at https://github.com/CocoaPods/CocoaPods/releases/tag/1.7.0.beta.1
+
+Analyzing dependencies
+The color indicates what happens when you run `pod update`
+<green>          - Will be updated to the newest version
+<blue>   - Will be updated, but not to the newest version because of specified version in Podfile
+<red>            - Will not be updated because of specified version in Podfile
+
+The following pod updates are available:
+- Crashlytics 3.11.1 -> 3.12.0 (latest version 3.12.0)
+- Fabric 1.8.2 -> 1.9.0 (latest version 1.9.0)
+- FBSDKCoreKit 4.39.0 -> 4.40.0 (latest version 4.40.0)
+- Firebase 5.16.0 -> (unused) (latest version 5.17.0)
+- FirebaseAnalytics 5.5.0 -> 5.6.0 (latest version 5.6.0)
+- FirebaseCore 5.2.0 -> 5.3.0 (latest version 5.3.0)
+- FirebaseInstanceID 3.4.0 -> 3.5.0 (latest version 3.5.0)
+- GoogleAppMeasurement 5.5.0 -> 5.6.0 (latest version 5.6.0)
+- LicensePlist 1.9.1 -> 2.1.0 (latest version 2.1.0)
+- Rome 0.18.0.51 -> 0.19.0.55 (latest version 0.19.0.55)
+- SwiftFormat 0.35.7 -> (unused) (latest version 0.39.4)
+- SwiftLint 0.28.1 -> 0.31.0 (latest version 0.31.0)
+- ViewDeck 2.2.11 -> 2.2.11 (latest version 3.1.0)

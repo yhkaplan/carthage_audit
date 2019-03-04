@@ -1,0 +1,37 @@
+*** Fetching Nimble
+*** Fetching ocmock
+*** Fetching Quick
+*** Fetching SDWebImage
+*** Fetching Alamofire
+*** Fetching realm-cocoa
+*** Fetching Unbox
+*** Fetching ActionSheetPicker-3.0
+*** Fetching IQKeyboardManager
+*** Fetching KeychainAccess
+*** Fetching MoonWalker
+*** Fetching SAMKeychain
+*** Fetching PhotoSlider
+*** Fetching libwebp-Xcode
+*** Fetching KIF
+*** Fetching MGSwipeTableCell
+*** Fetching MBProgressHUD
+*** Fetching Mantle
+*** Fetching DoubleSlider
+*** Fetching SWXMLHash
+*** Fetching Kingfisher
+The following dependencies are outdated:
+Nimble "v7.3.1" -> "v8.0.0" (Latest: "v8.0.0")
+Quick "v1.3.2" -> "v2.0.0" (Latest: "v2.0.0")
+ocmock "v3.3.1" -> "v3.3.1" (Latest: "v3.4.3")
+SDWebImage "4.4.5" -> "4.4.6" (Latest: "4.4.6")
+Alamofire "4.7.3" -> "4.8.1" (Latest: "4.8.1")
+Unbox "3.0.0" -> "3.1.0" (Latest: "3.1.0")
+ActionSheetPicker-3.0 "2.2.0" -> "2.2.0" (Latest: "2.3.0")
+KeychainAccess "v3.1.1" -> "v3.1.2" (Latest: "v3.1.2")
+IQKeyboardManager "v4.0.8" -> "v4.0.8" (Latest: "v6.2.0")
+MoonWalker "v0.0.23" -> "v0.26.0" (Latest: "v0.26.0")
+PhotoSlider "0.21.0" -> "1.0.0" (Latest: "1.0.0")
+KIF "v3.5.1" -> "v3.5.1" (Latest: "v3.7.4")
+MGSwipeTableCell "1.6.7" -> "1.6.8" (Latest: "1.6.8")
+MBProgressHUD "1.0.0" -> "1.0.0" (Latest: "1.1.0")
+DoubleSlider "v0.25.0" -> "v0.27.0" (Latest: "v0.27.0")
