@@ -1,0 +1,20 @@
+github "Alamofire/Alamofire"
+github "JohnSundell/Unbox"
+github "nakajijapan/PhotoSlider"
+github "adjust/ios_sdk" "criteo"
+github "kishikawakatsumi/KeychainAccess"
+github "jdg/MBProgressHUD" == 1.0.0
+github "skywinder/ActionSheetPicker-3.0" == 2.2.0
+github "Mantle/Mantle"
+github "hackiftekhar/IQKeyboardManager" == 4.0.8
+github "MortimerGoro/MGSwipeTableCell"
+github "kif-framework/KIF" == 3.5.1
+github "erikdoe/ocmock" == 3.3.1
+github "soffes/SAMKeychain"
+github "yhkaplan/DoubleSlider"
+github "yhkaplan/MoonWalker"
+github "Quick/Quick"
+github "Quick/Nimble"
+github "realm/realm-cocoa"
+github "SDWebImage/SDWebImage"
+github "SDWebImage/libwebp-Xcode" # SDWebImage V5.0よりSDWebImage/SDWebImageWebPCoderを使う
