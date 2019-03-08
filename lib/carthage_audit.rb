@@ -45,13 +45,23 @@ File.open("carthage_output.txt", "r") do |f|
     resp = make_request(url)
     puts resp.code
 
-    body = resp.body
-    puts body
-    next unless resp.code == 200 # not matching for some reason...
+    # next unless resp.code == 200 # not matching for some reason...
     # Parse HTML and search body for keywords
     # TODO: use nokogiri to parse html resp body
 # look for div class markdown-body
     body = resp.body
-    puts body
+    # puts body
+
+    d = Oga.parse_html(body)
+    # md = d.xpath("div[contains(@class, 'markdown-body')]")
+    md = d.css('.markdown-body').each do |n|
+      puts n.text
+      n.css('ul li').each do |l| # get only first ul
+	puts l.text
+      end
+    end
+
+    # puts md
+    # For each li item in print
   end
 end
