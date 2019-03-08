@@ -62,6 +62,8 @@ File.open("carthage_output.txt", "r") do |f|
     body = resp.body
     list_items = get_list_items_from_html(body)
 
+    # TODO: check list for keywords like vulnerability, security, emergency, etc,
+    # then send slack notification if applicable
     puts list_items
   end
 end
