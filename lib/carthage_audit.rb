@@ -24,6 +24,19 @@ def make_request(url)
   end
 end
 
+def get_list_items_from_html(html)
+  a = []
+
+  d = Oga.parse_html(html)
+  md = d.css('.markdown-body').each do |n|
+    n.css('ul li').each do |l| # TODO: get only first ul
+      a << l.text
+    end
+  end
+
+  return a
+end
+
 # TODO: replace w/ actual call to carthage outdated
 File.open("carthage_output.txt", "r") do |f|
   f.each_line do |line|
@@ -46,20 +59,9 @@ File.open("carthage_output.txt", "r") do |f|
     puts resp.code
 
     # next unless resp.code == 200 # not matching for some reason...
-    # Parse HTML and search body for keywords
     body = resp.body
-    # puts body
+    list_items = get_list_items_from_html(body)
 
-    d = Oga.parse_html(body)
-    # md = d.xpath("div[contains(@class, 'markdown-body')]")
-    md = d.css('.markdown-body').each do |n|
-      puts n.text
-      n.css('ul li').each do |l| # get only first ul
-	puts l.text
-      end
-    end
-
-    # puts md
-    # For each li item in print
+    puts list_items
   end
 end
