@@ -1,4 +1,5 @@
 require 'net/http'
+require 'oga'
 
 def get_repo(lib)
   File.open("Cartfile", "r") do |f|
@@ -44,9 +45,12 @@ File.open("carthage_output.txt", "r") do |f|
     resp = make_request(url)
     puts resp.code
 
-    next unless resp.code == 200
+    body = resp.body
+    puts body
+    next unless resp.code == 200 # not matching for some reason...
     # Parse HTML and search body for keywords
     # TODO: use nokogiri to parse html resp body
+# look for div class markdown-body
     body = resp.body
     puts body
   end
