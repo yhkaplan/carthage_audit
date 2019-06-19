@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require 'carthage_audit'
+
+audit = Audit.new
+audit.run
