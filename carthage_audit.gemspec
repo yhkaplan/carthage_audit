@@ -11,12 +11,12 @@ Gem::Specification.new do |spec|
   spec.description   = %q{Longer description of your project.}
   spec.homepage      = "http://domainforproject.com/"
   spec.license       = "MIT"
-
   spec.files         = [
     'Gemfile',
     'lib/carthage_audit.rb',
   ]
-  spec.executables   = ['bin/carthage_audit']
-  spec.test_files    = ['tests/test_NAME.rb']
+  spec.executables   = ['carthage_audit']
+  spec.add_development_dependency 'rspec', '~> 3.8'
+  spec.test_files    = ['spec/audit_spec.rb']
   spec.require_paths = ["lib"]
 end
