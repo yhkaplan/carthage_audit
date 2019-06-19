@@ -12,7 +12,10 @@ Gem::Specification.new do |spec|
   spec.homepage      = "http://domainforproject.com/"
   spec.license       = "MIT"
 
-  spec.files         = ['lib/carthage_audit.rb']
+  spec.files         = [
+    'Gemfile',
+    'lib/carthage_audit.rb',
+  ]
   spec.executables   = ['bin/carthage_audit']
   spec.test_files    = ['tests/test_NAME.rb']
   spec.require_paths = ["lib"]
