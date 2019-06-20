@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name          = "carthage_audit"
-  spec.version       = '0.1'
+  spec.version       = '0.1.1'
   spec.authors       = ["Joshua Kaplan"]
   spec.email         = ["yhkaplan@gmail.com"]
   spec.summary       = %q{A tool to check if newer versions of Carthage dependencies contain security updates}
@@ -17,6 +17,7 @@ Gem::Specification.new do |spec|
   ]
   spec.executables   = ['carthage_audit']
   spec.add_development_dependency 'rspec', '~> 3.8'
+  spec.add_runtime_dependency 'oga', '~> 2.15'
   spec.test_files    = ['spec/audit_spec.rb']
   spec.require_paths = ["lib"]
 end
