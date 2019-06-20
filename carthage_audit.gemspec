@@ -4,12 +4,12 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name          = "carthage_audit"
-  spec.version       = '1.0'
+  spec.version       = '0.1'
   spec.authors       = ["Joshua Kaplan"]
   spec.email         = ["yhkaplan@gmail.com"]
-  spec.summary       = %q{Short summary of your project}
-  spec.description   = %q{Longer description of your project.}
-  spec.homepage      = "http://domainforproject.com/"
+  spec.summary       = %q{A tool to check if newer versions of Carthage dependencies contain security updates}
+  spec.description   = %q{This tool is just a simple checker to see if newer versions of Carthage dependencies use keywords that relate to security}
+  spec.homepage      = "http://github.com/yhkaplan/carthage_audit"
   spec.license       = "MIT"
   spec.files         = [
     'Gemfile',
