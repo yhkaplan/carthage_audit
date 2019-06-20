@@ -2,13 +2,14 @@ require "net/http"
 require "oga"
 
 class Audit
-  Dependency = Struct.new(
-    :name,
-    :current_version,
-    :new_version,
-    :update_info_list,
-    :vulnerability_info
-  )
+  Dependency = Struct.new(:name, :current_version, :new_version, :update_info_list) do
+    # Returns first update note that includes security keyword
+    def vulnerability_info
+      # word_pattern = /(vulnerability|vulnerabilities|security|attack|advisory|unsecure|critical|alert|emergency)/
+      word_pattern = /(fix|bug)/ # TODO: for testing purposes
+      update_info_list.detect { |i| i.downcase.match?(word_pattern) }
+    end
+  end
 
   def get_repo(name)
     File.open("Cartfile", "r") do |f|
@@ -20,7 +21,7 @@ class Audit
       end
     end
 
-    "#{name}/#{name}" # repo
+    "#{name}/#{name}" # repo assumed to `github.com/repo_name/repo_name`
   end
 
   def make_request(url)
@@ -37,7 +38,7 @@ class Audit
 
     d = Oga.parse_html(html)
     _ = d.css(".markdown-body").each do |n|
-      n.css("ul li").each do |l| # TODO: get only first ul
+      n.css("ul li").each do |l|
         update_info << l.text
       end
     end
@@ -45,23 +46,17 @@ class Audit
     update_info
   end
 
-  def vulnerability_info(info_list)
-    # word_pattern = /(vulnerability|vulnerabilities|security|attack|advisory|unsecure|critical|alert|emergency)/
-    word_pattern = /(fix|bug)/ # TODO: for testing purposes
-    info_list.detect { |i| i.downcase.match?(word_pattern) }
-  end
-
   def run
     # TODO: replace w/ actual call to carthage outdated
     IO.popen("cat carthage_output.txt", "r") do |output|
       output.readlines.each do |line|
-        next unless matches = line.match(/^(.*?) "(.*?)" -> "(.*?)"/) # TODO: match the part in Latest instead
+        next unless matches = line.match(/^(.*?) "(.*?)".*Latest: "(.*?)"/)
 
         name = matches[1]
         current_version = matches[2]
         new_version = matches[3]
 
-        dep = Dependency.new(name, current_version, new_version, nil, nil)
+        dep = Dependency.new(name, current_version, new_version, nil)
 
         next if current_version == new_version
 
@@ -69,11 +64,10 @@ class Audit
         url = "https://github.com/#{repo}/releases/tag/#{new_version}"
         resp = make_request(url)
 
-        # next unless resp.code == 200 # not matching for some reason...
-        update_info_list = get_list_items_from_html(resp.body)
+        next unless resp.code == "200"
 
+        update_info_list = get_list_items_from_html(resp.body)
         dep.update_info_list = update_info_list
-        dep.vulnerability_info = vulnerability_info(dep.update_info_list)
 
         yield dep
       end
