@@ -2,12 +2,12 @@ require "net/http"
 require "oga"
 
 class Audit
-  # :name string, :current_version string, :new_version string, :update_info_list string
   Dependency = Struct.new(
     :name,
     :current_version,
     :new_version,
-    :update_info_list
+    :update_info_list,
+    :vulnerability_info
   )
 
   def get_repo(name)
@@ -33,35 +33,35 @@ class Audit
   end
 
   def get_list_items_from_html(html)
-    a = []
+    update_info = []
 
     d = Oga.parse_html(html)
     _ = d.css(".markdown-body").each do |n|
       n.css("ul li").each do |l| # TODO: get only first ul
-        a << l.text
+        update_info << l.text
       end
     end
 
-    a
+    update_info
   end
 
-  def has_vulnerability(info_list)
-    # word_pattern = /(vulnerability|vulnerabilities|security|attack|advisory|unsecure|critical|alert)/
+  def vulnerability_info(info_list)
+    # word_pattern = /(vulnerability|vulnerabilities|security|attack|advisory|unsecure|critical|alert|emergency)/
     word_pattern = /(fix|bug)/ # TODO: for testing purposes
-    info_list.detect { |i| i.downcase =~ word_pattern }
+    info_list.detect { |i| i.downcase.match?(word_pattern) }
   end
 
   def run
     # TODO: replace w/ actual call to carthage outdated
-    File.open("carthage_output.txt", "r") do |f|
-      f.each_line do |line|
+    IO.popen("cat carthage_output.txt", "r") do |output|
+      output.readlines.each do |line|
         next unless matches = line.match(/^(.*?) "(.*?)" -> "(.*?)"/) # TODO: match the part in Latest instead
 
         name = matches[1]
         current_version = matches[2]
         new_version = matches[3]
 
-        dep = Dependency.new(name, current_version, new_version, nil)
+        dep = Dependency.new(name, current_version, new_version, nil, nil)
 
         next if current_version == new_version
 
@@ -71,16 +71,12 @@ class Audit
 
         # next unless resp.code == 200 # not matching for some reason...
         update_info_list = get_list_items_from_html(resp.body)
-        dep.update_info_list = update_info_list
 
-        # TODO: check list for keywords like vulnerability, security, emergency, etc,
-        if vulnerability_fix = has_vulnerability(dep.update_info_list)
-          # then send slack notification if applicable or fail the build
-          puts "Security Alert: #{dep.name}"
-          puts vulnerability_fix
-        end
+        dep.update_info_list = update_info_list
+        dep.vulnerability_info = vulnerability_info(dep.update_info_list)
+
+        yield dep
       end
     end
   end
-
 end
