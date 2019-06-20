@@ -1,7 +1,7 @@
 require "net/http"
 require "oga"
 
-class Audit
+class Auditor
   Dependency = Struct.new(:name, :current_version, :new_version, :update_info_list) do
     # Returns first update note that includes security keyword
     def vulnerability_info

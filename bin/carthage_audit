@@ -2,5 +2,5 @@
 
 require 'carthage_audit'
 
-audit = Audit.new
-audit.run
+audit = Auditor.new
+audit.run # TODO: delete this because it's useless?
