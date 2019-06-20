@@ -45,8 +45,7 @@ class Auditor
   end
 
   def run
-    # TODO: replace w/ actual call to carthage outdated
-    IO.popen("cat carthage_output.txt", "r") do |output|
+    IO.popen("carthage outdated", "r") do |output|
       output.readlines.each do |line|
         next unless matches = line.match(/^(.*?) "(.*?)".*Latest: "(.*?)"/)
 
