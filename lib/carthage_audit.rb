@@ -4,10 +4,8 @@ require "oga"
 class Auditor
   Dependency = Struct.new(:name, :current_version, :new_version, :update_info_list) do
     # Returns first update note that includes security keyword
-    def vulnerability_info
-      # word_pattern = /(vulnerability|vulnerabilities|security|attack|advisory|unsecure|critical|alert|emergency)/
-      word_pattern = /(fix|bug)/ # TODO: for testing purposes
-      update_info_list.detect { |i| i.downcase.match?(word_pattern) }
+    def vulnerability_info(pattern = /(vulnerability|vulnerabilities|security|attack|advisory|unsecure|critical|alert|emergency)/)
+      update_info_list.detect { |i| i.downcase.match?(pattern) }
     end
   end
 
