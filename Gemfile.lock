@@ -10,7 +10,7 @@ GEM
     jaro_winkler (1.5.3)
     kramdown (1.17.0)
     mini_portile2 (2.4.0)
-    nokogiri (1.10.3)
+    nokogiri (1.10.4)
       mini_portile2 (~> 2.4.0)
     oga (2.15)
       ast
